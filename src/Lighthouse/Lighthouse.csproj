@@ -5,6 +5,14 @@
     <TargetFrameworks>$(NetCoreVersion)</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="containers\**" />
+    <EmbeddedResource Remove="containers\**" />
+    <None Remove="containers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".devcontainer\devcontainer.json" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Akka.Cluster.Hosting" Version="0.3.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="6.0.0" />
     <PackageReference Include="Petabridge.Cmd.Cluster" Version="$(PbmVersion)" />
@@ -18,5 +26,14 @@
     <None Update="akka.hocon">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".devcontainer\base.Dockerfile" />
+    <None Include=".devcontainer\docker-compose.yml" />
+    <None Include=".devcontainer\Dockerfile" />
+    <None Include=".devcontainer\library-scripts\common-debian.sh" />
+    <None Include=".devcontainer\library-scripts\meta.env" />
+    <None Include=".devcontainer\library-scripts\README.md" />
   </ItemGroup>
 </Project>
