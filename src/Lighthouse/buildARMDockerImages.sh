@@ -28,4 +28,4 @@ ARM_IMAGE_LATEST="$IMAGE_NAME:latest-arm64"
 
 echo "Creating Docker (Linux) image [$ARM_IMAGE]..."
 # your_docker_username/multi_arch_sample:buildx-latest
-docker buildx build --push --platform linux/amd64,linux/arm64 -f Dockerfile-arm64 --tag $ARM_IMAGE/$ARM_IMAGE_LATEST  .
+docker buildx build --push --platform linux/arm64 -f Dockerfile-arm64 --tag $ARM_IMAGE/$ARM_IMAGE_LATEST  .
