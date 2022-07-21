@@ -340,18 +340,13 @@ Target "BuildDockerImages" (fun _ ->
     let dockerFile = 
         match (isWindows) with 
         | true -> "Dockerfile-windows"
-        | _ -> "Dockerfile-arm64"
-               //!! "Dockerfile-linux"
-              // -- "Dockerfile-arm64"
+        | _ -> "Dockerfile-linux"
 
     let dockerTags (imageName:string, assemblyVersion:string) =
         match(isWindows) with
         | true -> [| imageName + ":" + releaseNotes.AssemblyVersion; imageName + ":" + releaseNotes.AssemblyVersion + "-nanoserver1803"; imageName + ":latest" |]
-        | _ -> [| imageName + ":" + releaseNotes.AssemblyVersion; imageName + ":" + releaseNotes.AssemblyVersion + "-arm64"; imageName + ":latest" |] 
+        | _ -> [| imageName + ":" + releaseNotes.AssemblyVersion; imageName + ":" + releaseNotes.AssemblyVersion + "-linux"; imageName + ":latest" |]
         
-        //!! [| imageName + ":" + releaseNotes.AssemblyVersion; imageName + ":" + releaseNotes.AssemblyVersion + "-linux"; imageName + ":latest" |]
-               //-- [| imageName + ":" + releaseNotes.AssemblyVersion; imageName + ":" + releaseNotes.AssemblyVersion + "-arm64"; imageName + ":latest" |] 
-
     let remoteRegistryUrl = getBuildParamOrDefault "remoteRegistry" ""
 
     let buildDockerImage imageName projectPath =

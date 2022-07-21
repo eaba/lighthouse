@@ -29,7 +29,7 @@ namespace Lighthouse
                         {
                             var pbm = PetabridgeCmd.Get(system);
                             pbm.RegisterCommandPalette(ClusterCommands.Instance); // enable Akka.Cluster management commands
-                            pbm.RegisterCommandPalette(RemoteCommands.Instance); // enable Akka.Remote management commands
+                            pbm.RegisterCommandPalette(new RemoteCommands()); // enable Akka.Remote management commands
                             pbm.Start();
                         });
                 });
