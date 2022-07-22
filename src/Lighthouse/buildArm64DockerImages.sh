@@ -8,6 +8,7 @@
 
 IMAGE_VERSION=$1
 IMAGE_NAME=$2
+USER_NAME=$3
 
 if [ -z $IMAGE_VERSION ]; then
 	echo `date`" - Missing mandatory argument: Docker image version."
@@ -20,13 +21,18 @@ if [ -z $IMAGE_NAME ]; then
 	echo `date`" - Using default Docker image name [$IMAGE_NAME]"
 fi
 
+if [ -z $USER_NAME ]; then
+	USER_NAME="petabridge"
+	echo `date`" - Using default Docker user name [$USER_NAME]"
+fi
+
 
 echo "Building project..."
 dotnet publish -c Release
 dotnet build-server shutdown
 
-ARM_IMAGE="$IMAGE_NAME:$IMAGE_VERSION-linux"
-ARM_IMAGE_LATEST="$IMAGE_NAME:latest-linux"
+ARM_IMAGE="$USER_NAME/$IMAGE_NAME:$IMAGE_VERSION-arm"
+ARM_IMAGE_LATEST="$USER_NAME/$IMAGE_NAME:latest-arm"
 
 echo "Creating Docker (Linux) image [$ARM_IMAGE]..."
 docker buildx build --push --platform linux/arm64 -f Dockerfile-arm64  -t $ARM_IMAGE  -t $ARM_IMAGE_LATEST .
