@@ -2,7 +2,7 @@
   <Import Project="..\common.props" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>$(NetCoreVersion)</TargetFrameworks>
+    <TargetFrameworks>$(NetVersion)</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Akka.Cluster.Hosting" Version="$(AkkaClusterHostingVersion)" />
